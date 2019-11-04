@@ -5,5 +5,8 @@
   "main": "index.js",
   "repository": "git@github.com:davidgljay/simplecal.git",
   "author": "<davidgljay@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "calendar-link": "^1.2.4"
+  }
 }
