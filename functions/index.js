@@ -1,8 +1,16 @@
 const functions = require('firebase-functions');
+const calendarLink = require('calendar-link')
 
-// // Create and Deploy Your First Cloud Functions
+// // Respond to a request with a set of calendar links.
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+exports.simplecalendar = functions.https.onRequest((request, response) => {
+ if (request.body.ical) {
+   response.send(calendarLink.ics(request.body))
+ }
+ response.send({
+   google: calendarLink.google(request.body),
+   outlook: calendarLink.outlook(request.body),
+   yahoo: calendarLink.yahoo(request.body)
+ });
+});
