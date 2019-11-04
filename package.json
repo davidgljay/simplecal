@@ -1,0 +1,9 @@
+{
+  "name": "simplecal",
+  "version": "1.0.0",
+  "description": "A simple firebase script for generating calendar links.",
+  "main": "index.js",
+  "repository": "git@github.com:davidgljay/simplecal.git",
+  "author": "<davidgljay@gmail.com>",
+  "license": "MIT"
+}
