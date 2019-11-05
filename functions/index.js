@@ -5,9 +5,6 @@ const calendarLink = require('calendar-link')
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 exports.simplecalendar = functions.https.onRequest((request, response) => {
- if (request.body.ical) {
-   response.send(calendarLink.ics(request.body))
- }
  response.send({
    google: calendarLink.google(request.body),
    outlook: calendarLink.outlook(request.body),
