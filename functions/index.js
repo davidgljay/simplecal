@@ -12,6 +12,7 @@ exports.simplecalendar = functions.https.onRequest((request, response) => {
  response.send({
    google: calendarLink.google(event),
    outlook: calendarLink.outlook(event),
-   yahoo: calendarLink.yahoo(event)
+   yahoo: calendarLink.yahoo(event),
+   ics: `https://simplecal-cht.firebaseapp.com/?${Object.keys(event).map(key => key + '=' + encodeURIComponent(event[key])).join('&')}`
  });
 });
