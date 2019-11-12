@@ -5,9 +5,13 @@ const calendarLink = require('calendar-link')
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 exports.simplecalendar = functions.https.onRequest((request, response) => {
+ const {time, date} = request.body
+ const event = Object.assign({}, {
+   start: new Date(`${time} ${date} PST`).toISOString,
+ }, request.body)
  response.send({
-   google: calendarLink.google(request.body),
-   outlook: calendarLink.outlook(request.body),
-   yahoo: calendarLink.yahoo(request.body)
+   google: calendarLink.google(event),
+   outlook: calendarLink.outlook(event),
+   yahoo: calendarLink.yahoo(event)
  });
 });
