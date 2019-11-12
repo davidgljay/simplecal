@@ -7,12 +7,13 @@ const calendarLink = require('calendar-link')
 exports.simplecalendar = functions.https.onRequest((request, response) => {
  const {time, date} = request.body
  const event = Object.assign({}, {
-   start: new Date(`${time} ${date} PST`).toISOString,
+   start: new Date(`${time} ${date} PST`).toISOString(),
  }, request.body)
+ const encodedParams = Object.keys(event).map(key => key + '=' + encodeURIComponent(event[key])).join('&')
  response.send({
    google: calendarLink.google(event),
    outlook: calendarLink.outlook(event),
    yahoo: calendarLink.yahoo(event),
-   ics: `https://simplecal-cht.firebaseapp.com/?${Object.keys(event).map(key => key + '=' + encodeURIComponent(event[key])).join('&')}`
+   ics: `https://simplecal-cht.firebaseapp.com/?${encodedParams}`
  });
 });
