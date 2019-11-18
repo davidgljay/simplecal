@@ -6,9 +6,10 @@ const calendarLink = require('calendar-link')
 //
 exports.simplecalendar = functions.https.onRequest((request, response) => {
  const {time, date} = request.body
- const event = Object.assign({}, {
+ const event = Object.assign({}, request.body, {
    start: new Date(`${time} ${date} PST`).toISOString(),
- }, request.body)
+   duration: JSON.parse(request.body.duration)
+ })
  const encodedParams = Object.keys(event).map(key => key + '=' + encodeURIComponent(event[key])).join('&')
  response.send({
    google: calendarLink.google(event),
