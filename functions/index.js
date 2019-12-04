@@ -5,9 +5,8 @@ const calendarLink = require('calendar-link')
 // // https://firebase.google.com/docs/functions/write-firebase-functions
 //
 exports.simplecalendar = functions.https.onRequest((request, response) => {
- const {time, date} = request.body
+ const {time, date, start} = request.body
  const event = Object.assign({}, request.body, {
-   start: new Date(`${time} ${date} PST`).toISOString(),
    duration: JSON.parse(request.body.duration)
  })
  const encodedParams = Object.keys(event).map(key => key + '=' + encodeURIComponent(event[key])).join('&')
